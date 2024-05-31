@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "AppStarter"
 include(":app")
+include(":app:videofeed")

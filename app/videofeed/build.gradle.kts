@@ -1,7 +1,5 @@
-import org.gradle.internal.impldep.org.junit.experimental.categories.Categories.CategoryFilter.include
-
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-android")
     id("kotlin-parcelize")
@@ -11,22 +9,16 @@ plugins {
 }
 
 android {
-    namespace = "com.company.app"
+    namespace = "com.app.videofeed"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.company.app"
         minSdk = 21
-        //noinspection EditedTargetSdkVersion
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
-        testInstrumentationRunner = "com.company.app.HiltTestRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
-
     }
 
     buildTypes {
@@ -45,6 +37,7 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
     buildFeatures {
         compose = true
     }
@@ -69,9 +62,8 @@ android {
     }
 }
 
-dependencies {
-    implementation(project(":app:videofeed"))
 
+dependencies {
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -93,6 +85,14 @@ dependencies {
     val composeVersion = "1.5.4"
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:${composeVersion}")
     debugImplementation("androidx.compose.ui:ui-tooling:${composeVersion}")
+
+    // Coil for Compose
+    implementation("io.coil-kt:coil-compose:2.3.0")
+    // AndroidX Media 3
+    val mediaVersion = "1.2.0"
+    implementation( "androidx.media3:media3-exoplayer:$mediaVersion")
+    implementation( "androidx.media3:media3-exoplayer-hls:$mediaVersion")
+    implementation( "androidx.media3:media3-ui:$mediaVersion")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0-rc01")
     implementation("androidx.navigation:navigation-compose:2.7.5")
@@ -143,6 +143,5 @@ dependencies {
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("com.squareup.okhttp3:mockwebserver:${okHttp}")
     androidTestImplementation("com.squareup.okhttp3:okhttp:${okHttp}")
-
 
 }
